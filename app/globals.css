@@ -1,26 +1,228 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design system elec k
+ * --------------------
+ * Palette stricte issue de la charte. Contrastes vérifiés (WCAG 2.1) :
+ *  - blanc sur rouge #E30613 ........ 4,9:1  (AA texte normal) → boutons CTA
+ *  - blanc sur rouge survol #B8050F .. 7,0:1
+ *  - rouge #E30613 sur blanc ......... 4,9:1  (AA)
+ *  - rouge #E30613 sur noir .......... 4,1:1  (AA grand texte / éléments graphiques uniquement)
+ *  - rouge clair #FF4D57 sur noir .... 5,9:1  → petits textes rouges sur fond sombre
+ *  - gris #A3A3A3 sur #0A0A0A ........ 8,3:1 ; gris #525252 sur #F5F5F5 ... 7,0:1
+ */
+@theme {
+  --color-ink: #0a0a0a; /* noir principal : fonds, header, footer */
+  --color-graphite: #1a1a1a; /* cartes, sections secondaires */
+  --color-graphite-2: #2a2a2a; /* bordures, cartes survolées */
+  --color-brand: #e30613; /* rouge accent : CTA, soulignements, icônes */
+  --color-brand-hover: #b8050f; /* rouge survol */
+  --color-brand-bright: #ff4d57; /* rouge lisible en petit texte sur fond noir */
+  --color-mist: #f5f5f5; /* fonds de sections claires */
+  --color-muted: #a3a3a3; /* texte secondaire sur fond sombre */
+  --color-muted-dark: #525252; /* texte secondaire sur fond clair */
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --container-site: 76rem;
+  --header-h: 4.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  /* Focus visible, net et identique partout (navigation clavier) */
+  :focus-visible {
+    outline: 3px solid var(--color-brand-bright);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .on-light :focus-visible {
+    outline-color: var(--color-brand);
+  }
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Rappel du logo : soulignement rouge épais sous les titres de section */
+  .heading-underline {
+    position: relative;
+    padding-bottom: 0.9rem;
+  }
+  .heading-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 4rem;
+    height: 6px;
+    border-radius: 1px;
+    background: var(--color-brand);
+  }
+  /* Texte long (pages légales) sur fond clair */
+  .prose-legal {
+    color: #262626;
+    line-height: 1.75;
+    max-width: 48rem;
+  }
+  .prose-legal > h2 {
+    margin-top: 2.75rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .prose-legal > h3 {
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .prose-legal > p,
+  .prose-legal > ul,
+  .prose-legal > table {
+    margin-top: 0.85rem;
+  }
+  .prose-legal > ul {
+    list-style: disc;
+    padding-left: 1.4rem;
+  }
+  .prose-legal > ul > li + li {
+    margin-top: 0.35rem;
+  }
+  .prose-legal a {
+    color: var(--color-ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--color-brand);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .prose-legal > table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .prose-legal th,
+  .prose-legal td {
+    border: 1px solid rgb(0 0 0 / 0.12);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-legal th {
+    background: var(--color-mist);
+  }
+  .prose-legal mark {
+    background: #fff3b0;
+    color: inherit;
+    padding: 0 0.2em;
+  }
+  /* Contenu de l'éditeur de texte enrichi du dashboard */
+  .prose-editor {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .prose-editor p + p,
+  .prose-editor ul,
+  .prose-editor ol,
+  .prose-editor blockquote {
+    margin-top: 0.6rem;
+  }
+  .prose-editor ul {
+    list-style: disc;
+    padding-left: 1.4rem;
+  }
+  .prose-editor ol {
+    list-style: decimal;
+    padding-left: 1.4rem;
+  }
+  .prose-editor blockquote {
+    border-left: 3px solid rgb(0 0 0 / 0.15);
+    padding-left: 0.8rem;
+    color: #525252;
+  }
+  .prose-editor a {
+    text-decoration: underline;
+  }
+  .prose-editor h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .prose-editor h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .heading-underline-center::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Bandeau défilant des logos clients */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Pas de défilement : grille fixe, sans la copie */
+  .marquee {
+    mask-image: none !important;
+  }
+  .marquee-track {
+    animation: none !important;
+    width: auto;
+    justify-content: center;
+  }
+  .marquee-track > ul:first-child {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .marquee-copy {
+    display: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

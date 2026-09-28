@@ -1,0 +1,256 @@
+// Schéma de données elec k (PostgreSQL)
+// Modèles : User, Lead (+ LeadStatus), EmailMessage, Note, Realisation, FaqItem, Template, Setting, ActivityLog,
+// plus StoredFile (photos, pièces jointes) et MailboxState (curseur de synchronisation IMAP).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EMPLOYE
+}
+
+enum LeadStatus {
+  NOUVEAU
+  CONTACTE
+  VISITE_PLANIFIEE
+  DEVIS_ENVOYE
+  GAGNE
+  PERDU
+}
+
+enum ClientType {
+  PARTICULIER
+  COPROPRIETE
+  ENTREPRISE
+}
+
+enum MailDirection {
+  INBOUND
+  OUTBOUND
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         Role      @default(EMPLOYE)
+  active       Boolean   @default(true)
+  // 2FA TOTP : secret chiffré (AES-256-GCM, clé dérivée de AUTH_SECRET)
+  totpSecret   String?
+  totpEnabled  Boolean   @default(false)
+  // Verrouillage après plusieurs échecs de connexion
+  failedLogins Int       @default(0)
+  lockedUntil  DateTime?
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  notes      Note[]
+  activities ActivityLog[]
+  sentEmails EmailMessage[]
+  leads      Lead[]         @relation("AssignedLeads")
+}
+
+model Lead {
+  id          String     @id @default(cuid())
+  number      Int        @unique @default(autoincrement()) // référence lisible : DEV-000123
+  status      LeadStatus @default(NOUVEAU)
+  clientType  ClientType
+  companyName String? // copropriété (résidence / syndic) ou entreprise
+
+  firstName  String
+  lastName   String
+  email      String
+  phone      String
+  postalCode String
+  city       String
+  message    String?
+
+  // Activité demandée : BORNE | LED | ELECTRICITE | THERMOGRAPHIE (voir lib/content/services.ts)
+  service String  @default("BORNE")
+  need    String? // nature de la demande (hors bornes) : relamping, dépannage, contrôle périodique…
+
+  // Détails du projet. Les champs « borne » ne sont renseignés que pour une demande de borne de recharge.
+  siteType     String
+  chargerCount String?
+  power        String?
+  location     String?
+  distance     String?
+  vehicle      String?
+  timeline     String
+
+  // Provenance (analytics interne)
+  source      String  @default("direct") // organique | direct | reseaux | referent | payant
+  referrer    String?
+  landingPage String?
+  utm         Json?
+
+  consentAt DateTime
+  ipHash    String? // IP hachée (jamais stockée en clair)
+
+  // Suivi commercial
+  assignedToId    String?
+  assignedTo      User?     @relation("AssignedLeads", fields: [assignedToId], references: [id], onDelete: SetNull)
+  followUpAt      DateTime? // date de relance
+  visitAt         DateTime? // date de visite technique
+  firstResponseAt DateTime?
+  quoteSentAt     DateTime?
+  closedAt        DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  files  StoredFile[]
+  notes  Note[]
+  emails EmailMessage[]
+
+  @@index([status])
+  @@index([service])
+  @@index([email])
+  @@index([createdAt])
+}
+
+model StoredFile {
+  id        String   @id @default(cuid())
+  filename  String
+  mimeType  String
+  size      Int
+  data      Bytes
+  alt       String? // texte alternatif (photos de réalisations)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  leadId         String?
+  lead           Lead?         @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  realisationId  String?
+  realisation    Realisation?  @relation(fields: [realisationId], references: [id], onDelete: Cascade)
+  emailMessageId String?
+  emailMessage   EmailMessage? @relation(fields: [emailMessageId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([realisationId])
+  @@index([emailMessageId])
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  body      String
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  authorId  String?
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+}
+
+model EmailMessage {
+  id          String        @id @default(cuid())
+  direction   MailDirection
+  folder      String // chemin IMAP : INBOX, Sent…
+  uid         Int? // UID IMAP (null tant que non synchronisé)
+  uidValidity BigInt?
+  messageId   String? // en-tête Message-ID
+  inReplyTo   String?
+  references  String?
+
+  subject     String
+  fromAddress String
+  fromName    String?
+  toAddresses String[]
+  ccAddresses String[]
+  date        DateTime
+  text        String?
+  html        String?
+  snippet     String?
+
+  seen           Boolean @default(false)
+  hasAttachments Boolean @default(false)
+
+  leadId   String?
+  lead     Lead?        @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  sentById String?
+  sentBy   User?        @relation(fields: [sentById], references: [id], onDelete: SetNull)
+  files    StoredFile[]
+
+  createdAt DateTime @default(now())
+
+  @@unique([folder, uidValidity, uid])
+  @@index([messageId])
+  @@index([leadId])
+  @@index([date])
+  @@index([fromAddress])
+}
+
+model MailboxState {
+  folder      String   @id
+  uidValidity BigInt
+  lastUid     Int      @default(0)
+  lastSyncAt  DateTime @default(now())
+}
+
+model Realisation {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  title       String
+  city        String
+  clientType  ClientType
+  service     String       @default("BORNE") // BORNE | LED | ELECTRICITE | THERMOGRAPHIE
+  description String
+  published   Boolean      @default(false)
+  order       Int          @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  photos      StoredFile[]
+}
+
+model FaqItem {
+  id         String   @id @default(cuid())
+  question   String
+  answer     String
+  category   String // general | particuliers | coproprietes | entreprises | maintenance
+  showOnHome Boolean  @default(false)
+  published  Boolean  @default(true)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Template {
+  id        String   @id @default(cuid())
+  name      String
+  subject   String
+  body      String // HTML (éditeur riche), variables {{prenom}}, {{nom}}, {{ville}}, {{reference}}
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Setting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+model ActivityLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String // ex. lead.status, mail.send, user.login
+  entityType String?
+  entityId   String?
+  details    Json?
+  ip         String?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([entityType, entityId])
+}

@@ -1,0 +1,18 @@
+# Alternative à `npm run db:dev` : PostgreSQL en conteneur pour le développement.
+# docker compose up -d   →   DATABASE_URL="postgresql://eleck:eleck@localhost:5433/eleck"
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: eleck
+      POSTGRES_PASSWORD: eleck
+      POSTGRES_DB: eleck
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
