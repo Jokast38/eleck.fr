@@ -43,7 +43,7 @@ export default async function SettingsPage() {
               <div className="flex items-center justify-between"><dt>Envoi (SMTP)</dt><dd>{ok(smtpConfigured())}</dd></div>
               <div className="flex items-center justify-between"><dt>Réception (IMAP)</dt><dd>{ok(imapConfigured())}</dd></div>
               <div className="flex items-center justify-between"><dt>Anti-spam Turnstile</dt><dd>{ok(Boolean(process.env.TURNSTILE_SECRET_KEY))}</dd></div>
-              <div className="flex items-center justify-between"><dt>Limitation de débit (Upstash)</dt><dd>{ok(Boolean(process.env.UPSTASH_REDIS_REST_URL))}</dd></div>
+              <div className="flex items-center justify-between"><dt>Limitation de débit (Upstash)</dt><dd>{ok(Boolean(process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL))}</dd></div>
             </dl>
           </Card>
         </div>

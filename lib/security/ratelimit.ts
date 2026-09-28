@@ -29,9 +29,12 @@ export function rateLimiter(name: string, max: number, window: `${number} ${"s" 
   const existing = limiters.get(id);
   if (existing) return existing;
   let limiter: Limiter;
-  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+  // Noms des variables selon l'intégration : Upstash direct (UPSTASH_REDIS_REST_*) ou Vercel Marketplace (KV_REST_API_*)
+  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+  if (url && token) {
     limiter = new Ratelimit({
-      redis: Redis.fromEnv(),
+      redis: new Redis({ url, token }),
       limiter: Ratelimit.slidingWindow(max, window),
       prefix: `eleck:${name}`,
     });
