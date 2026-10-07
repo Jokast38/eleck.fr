@@ -3,7 +3,7 @@
  * Toute information affichée sur le site doit venir d'ici.
  * Les valeurs [À COMPLÉTER] sont à renseigner avant la mise en ligne.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://eleck.fr").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.eleck.fr").replace(/\/$/, "");
 
 export const site = {
   name: "elec k",
