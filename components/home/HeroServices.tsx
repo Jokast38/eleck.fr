@@ -8,20 +8,21 @@ type Tile = { href: string; label: string; art: React.ReactNode; className?: str
 
 const tiles: Tile[] = [
   {
-    href: "/particuliers",
-    label: "Bornes de recharge IRVE",
-    art: <ChargerIllustration className="h-full w-full" />,
+    href: "/depannage-electrique",
+    label: "Dépannage, rénovation, tableau électrique",
+    art: <PanelArt className="h-full w-full" />,
     className: "row-span-2",
     artClass: "flex-1 min-h-0 py-2",
   },
+  { href: "/particuliers", label: "Bornes de recharge IRVE", art: <ChargerIllustration className="h-full w-full" />, artClass: "h-24" },
   { href: "/eclairage-led", label: "Éclairage LED", art: <LedArt className="h-full w-full" />, artClass: "h-24" },
-  { href: "/electricite-tertiaire-industrielle", label: "Électricité tertiaire et industrielle", art: <PanelArt className="h-full w-full" />, artClass: "h-24" },
-  { href: "/thermographie", label: "Thermographie infrarouge", art: <ThermoArt className="h-full w-full" />, className: "col-span-2", artClass: "h-24" },
+  { href: "/electricite-tertiaire-industrielle", label: "Électricité tertiaire et industrielle", art: <PanelArt className="h-full w-full" />, artClass: "h-16" },
+  { href: "/thermographie", label: "Thermographie infrarouge", art: <ThermoArt className="h-full w-full" />, artClass: "h-16" },
 ];
 
 /**
- * Illustration du hero : les 4 activités d'elec k en mosaïque cliquable.
- * La borne occupe la plus grande tuile (activité principale).
+ * Illustration du hero : les activités d'elec k en mosaïque cliquable.
+ * L'électricité générale occupe la plus grande tuile (activité principale).
  */
 export function HeroServices({ className }: { className?: string }) {
   return (

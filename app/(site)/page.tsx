@@ -2,6 +2,7 @@ import { Hero } from "@/components/home/Hero";
 import { ClientLogos } from "@/components/sections/ClientLogos";
 import { TrustBar } from "@/components/home/TrustBar";
 import { AudienceCards } from "@/components/sections/AudienceCards";
+import { HomeElectricity } from "@/components/sections/HomeElectricity";
 import { Services } from "@/components/sections/Services";
 import { Process } from "@/components/sections/Process";
 import { OtherServices } from "@/components/sections/OtherServices";
@@ -19,10 +20,10 @@ import { pageMetadata } from "@/lib/seo";
 export const revalidate = 3600;
 
 export const metadata = pageMetadata({
-  title: "Bornes de recharge, LED et électricité Val-d'Oise | elec k",
+  title: "Électricien Herblay-sur-Seine et Val-d'Oise (95) | elec k",
   absoluteTitle: true,
   description:
-    "Électricien certifié IRVE à Herblay (95) : bornes de recharge, éclairage LED, électricité tertiaire et industrielle, thermographie. Devis gratuit.",
+    "Électricien à Herblay (95) : dépannage, rénovation et mise aux normes, tableau électrique, bornes de recharge IRVE, éclairage LED. Devis gratuit.",
   path: "/",
 });
 
@@ -34,6 +35,7 @@ export default async function HomePage() {
       <Hero />
       <TrustBar />
       <ClientLogos />
+      <HomeElectricity />
       <AudienceCards />
       <Services />
       <Process />

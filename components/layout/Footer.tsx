@@ -30,8 +30,8 @@ export function Footer() {
         <div className="sm:col-span-2 lg:col-span-1">
           <Logo className="h-9" />
           <p className="mt-6 max-w-sm text-muted">
-            Bornes de recharge, éclairage LED, installation et maintenance électrique, thermographie : votre électricien
-            de proximité, de l&apos;étude à la maintenance.
+            Dépannage, rénovation et mise aux normes, tableau électrique, bornes de recharge, éclairage LED,
+            thermographie : votre électricien de proximité à Herblay-sur-Seine, de l&apos;étude à la maintenance.
           </p>
           <p className="mt-5 inline-flex items-center gap-2 text-sm font-medium">
             <ShieldCheck aria-hidden className="size-4 text-brand-bright" />
@@ -69,7 +69,7 @@ export function Footer() {
           <p>
             © {year} {site.name}. Tous droits réservés.
           </p>
-          <p>Bornes de recharge · Éclairage LED · Électricité · Thermographie · Val-d&apos;Oise (95)</p>
+          <p>Électricien · Bornes de recharge · Éclairage LED · Thermographie · Val-d&apos;Oise (95)</p>
         </Container>
       </div>
     </footer>

@@ -3,12 +3,22 @@
  * modifiables depuis le dashboard ; ce fichier reste la source par défaut.
  * Les réponses marquées [À CONFIRMER] doivent être validées par elec k avant la mise en ligne.
  */
-export type FaqCategory = "general" | "particuliers" | "coproprietes" | "entreprises" | "maintenance" | "eclairage" | "electricite" | "thermographie";
+export type FaqCategory =
+  | "general"
+  | "habitat"
+  | "particuliers"
+  | "coproprietes"
+  | "entreprises"
+  | "maintenance"
+  | "eclairage"
+  | "electricite"
+  | "thermographie";
 
 export type FaqItem = { q: string; a: string; category: FaqCategory; home?: boolean };
 
 export const faqCategories: Record<FaqCategory, string> = {
   general: "Questions générales",
+  habitat: "Dépannage et travaux électriques",
   particuliers: "Borne à domicile",
   coproprietes: "Borne en copropriété",
   entreprises: "Borne pour entreprises",
@@ -118,7 +128,38 @@ faq.push(
     category: "general",
     home: true,
     q: "Intervenez-vous pour d'autres travaux que les bornes de recharge ?",
-    a: "Oui. Au-delà des bornes, elec k réalise des installations d'éclairage LED, des travaux d'installation et de maintenance électrique pour le tertiaire et l'industrie, ainsi que des contrôles par thermographie infrarouge.",
+    a: "Oui. elec k est avant tout une entreprise d'électricité : dépannage, rénovation et mise aux normes, remplacement de tableau électrique chez les particuliers, installation et maintenance électrique pour le tertiaire et l'industrie, éclairage LED et thermographie infrarouge.",
+  },
+  {
+    category: "habitat",
+    q: "Intervenez-vous pour un dépannage électrique chez les particuliers ?",
+    a: "Oui, en maison comme en appartement, à Herblay-sur-Seine et dans le Val-d'Oise : panne de courant, disjoncteur qui saute, prises ou éclairage hors service. Appelez-nous en décrivant la situation : nous vous indiquons la marche à suivre et convenons d'une intervention.",
+  },
+  {
+    category: "habitat",
+    home: true,
+    q: "Mon disjoncteur saute régulièrement : que faire ?",
+    a: "Débranchez les appareils du circuit concerné puis réenclenchez le disjoncteur. S'il retombe aussitôt, rebranchez les appareils un par un pour repérer celui qui est en cause. Si le problème persiste sans appareil branché, ou si vous constatez une odeur de brûlé ou un échauffement, laissez le circuit coupé et faites appel à un électricien : un défaut d'isolement ou une surcharge doit être diagnostiqué.",
+  },
+  {
+    category: "habitat",
+    q: "Quand faut-il remplacer son tableau électrique ?",
+    a: "Un remplacement est conseillé si votre tableau fonctionne encore avec des fusibles anciens, s'il n'a pas de protection différentielle 30 mA, s'il chauffe, s'il est saturé ou si vous ajoutez de nouveaux circuits (cuisine, chauffage, borne de recharge). Nous vérifions l'existant et vous indiquons s'il faut le remplacer ou simplement le compléter.",
+  },
+  {
+    category: "habitat",
+    q: "Ma maison est ancienne : dois-je refaire toute l'installation électrique ?",
+    a: "Pas forcément. Après un diagnostic, nous distinguons les travaux de mise en sécurité prioritaires (mise à la terre, protection différentielle, protections adaptées aux circuits, salle d'eau) de ceux qui relèvent d'une rénovation plus complète, selon la norme NF C 15-100. Vous décidez ensuite du périmètre des travaux.",
+  },
+  {
+    category: "habitat",
+    q: "Pouvez-vous corriger les anomalies d'un diagnostic électrique ?",
+    a: "Oui. Le diagnostic électrique, obligatoire pour vendre ou louer un logement dont l'installation a plus de 15 ans, peut relever des anomalies. Transmettez-nous le rapport : nous chiffrons puis réalisons les travaux pour les corriger.",
+  },
+  {
+    category: "habitat",
+    q: "Faut-il une attestation Consuel après des travaux ?",
+    a: "Une attestation de conformité visée par le Consuel est exigée pour une installation électrique neuve et, dans certains cas, après une rénovation complète. Nous vous indiquons dès le devis si votre chantier est concerné.",
   },
   {
     category: "eclairage",

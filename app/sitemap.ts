@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
-import { cities, cityPath } from "@/lib/content/cities";
+import { cities, cityPath, electricianPages, electricianPath } from "@/lib/content/cities";
 
 /** Plan du site pour les moteurs : pages publiques indexables uniquement (ni admin, ni pages noindex). */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -14,7 +14,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     page("/", 1, "weekly"),
-    // Services
+    // Électricité générale
+    page("/depannage-electrique", 0.9),
+    page("/renovation-electrique", 0.9),
+    page("/tableau-electrique", 0.9),
+    // Bornes de recharge et autres services
     page("/particuliers", 0.9),
     page("/coproprietes", 0.9),
     page("/entreprises", 0.9),
@@ -29,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/faq", 0.6),
     page("/a-propos", 0.5),
     // Pages locales
+    ...cities.filter((c) => electricianPages[c.slug]).map((c) => page(electricianPath(c.slug), 0.8)),
     ...cities.map((c) => page(cityPath(c.slug), 0.8)),
     // Légal
     page("/mentions-legales", 0.1, "yearly"),

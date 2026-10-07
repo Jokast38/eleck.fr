@@ -6,6 +6,7 @@ import { SplitChecklist } from "@/components/sections/SplitChecklist";
 import { Process } from "@/components/sections/Process";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { RealisationsGrid } from "@/components/sections/RealisationsGrid";
+import { RelatedLinks, relatedElectricity } from "@/components/sections/RelatedLinks";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { PanelArt } from "@/components/home/ServiceArt";
 import { ServiceJsonLd } from "@/components/seo/BusinessJsonLd";
@@ -13,16 +14,16 @@ import { getFaq } from "@/lib/content/queries";
 import { pageMetadata } from "@/lib/seo";
 
 const description =
-  "Électricien pour le tertiaire et l'industrie dans le Val-d'Oise : installation, mise en conformité, maintenance préventive et dépannage. Devis gratuit.";
+  "Électricien tertiaire et industriel dans le Val-d'Oise (95) : installation, mise en conformité, maintenance préventive et dépannage. Devis gratuit.";
 
 export const revalidate = 3600;
-export const metadata = pageMetadata({ title: "Électricité tertiaire et industrielle (95)", description, path: "/electricite-tertiaire-industrielle" });
+export const metadata = pageMetadata({ title: "Électricien tertiaire et industriel (95)", description, path: "/electricite-tertiaire-industrielle" });
 
 export default async function ElectricitePage() {
   const faq = await getFaq();
   return (
     <>
-      <ServiceJsonLd name="Installation et maintenance électrique tertiaire et industrielle" description={description} audience="Entreprises, commerces, industries et collectivités" />
+      <ServiceJsonLd name="Installation et maintenance électrique tertiaire et industrielle" serviceType="Électricité tertiaire et industrielle" description={description} audience="Entreprises, commerces, industries et collectivités" />
       <PageHero
         crumbs={[{ label: "Électricité tertiaire et industrielle", href: "/electricite-tertiaire-industrielle" }]}
         eyebrow="Électricité tertiaire et industrielle"
@@ -73,6 +74,7 @@ export default async function ElectricitePage() {
       <Process />
       <RealisationsGrid service="ELECTRICITE" hideWhenEmpty title="Nos chantiers d'électricité" intro="Quelques chantiers récents réalisés par nos équipes." />
       <FaqSection items={faq.filter((f) => f.category === "electricite")} title="Questions fréquentes sur nos travaux électriques" />
+      <RelatedLinks items={relatedElectricity("/electricite-tertiaire-industrielle")} />
       <FinalCta title="Un besoin en électricité pour votre site ?" service="electricite" />
     </>
   );

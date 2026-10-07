@@ -8,15 +8,17 @@ import { HeroServices } from "./HeroServices";
 
 // Raccourcis vers les activités (affichés à la place de la mosaïque sur mobile et tablette)
 const quickLinks = [
+  { href: "/depannage-electrique", label: "Dépannage" },
+  { href: "/renovation-electrique", label: "Rénovation" },
+  { href: "/tableau-electrique", label: "Tableau électrique" },
   { href: "/particuliers", label: "Bornes de recharge" },
   { href: "/eclairage-led", label: "Éclairage LED" },
-  { href: "/electricite-tertiaire-industrielle", label: "Électricité" },
   { href: "/thermographie", label: "Thermographie" },
 ];
 
 /**
- * Hero plein écran. La borne de recharge reste l'accroche principale (référencement),
- * les autres activités sont visibles immédiatement : sous-titre, raccourcis et mosaïque illustrée.
+ * Hero plein écran. Accroche « électricien » (requête principale du métier), la borne de recharge IRVE
+ * en spécialité ; toutes les activités sont visibles immédiatement : sous-titre, raccourcis et mosaïque illustrée.
  * Aucune image lourde : illustrations SVG inline (le LCP est le titre, affiché immédiatement).
  */
 export function Hero() {
@@ -37,14 +39,14 @@ export function Hero() {
           <h1 id="hero-title" className="mt-6 font-display text-[2.1rem] leading-[1.14] font-semibold sm:text-5xl lg:text-[3.3rem]">
             {/* Soulignement rouge (rappel du logo) dessiné en fond : ne déborde jamais sur la ligne suivante */}
             <span className="bg-[linear-gradient(var(--color-brand),var(--color-brand))] bg-[length:100%_0.11em] bg-[position:0_94%] bg-no-repeat">
-              Bornes de recharge
+              Électricien
             </span>{" "}
-            et solutions électriques dans le Val-d&apos;Oise
+            à Herblay et dans tout le <span className="whitespace-nowrap">Val-d&apos;Oise</span>
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/80 sm:text-xl">
-            Installateur certifié IRVE, elec k équipe particuliers, copropriétés et entreprises en bornes de recharge. Nous
-            intervenons aussi en éclairage LED, en installation et maintenance électrique tertiaire et industrielle, et en
-            thermographie infrarouge.
+            Dépannage, rénovation et mise aux normes, tableau électrique : depuis Herblay-sur-Seine, elec k intervient chez
+            les particuliers comme chez les professionnels. Installateur certifié IRVE, nous posons aussi des bornes de recharge et réalisons vos
+            projets d&apos;éclairage LED et de thermographie infrarouge.
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
             <CtaButton size="lg" />

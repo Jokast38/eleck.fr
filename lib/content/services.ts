@@ -1,6 +1,6 @@
 /**
- * Les 4 activités d'elec k. Source unique pour : menu, pied de page, accueil, formulaire de devis, dashboard.
- * La borne de recharge reste l'activité principale (référencement, hero, CTA) ; les autres sont mises en avant en second niveau.
+ * Les 4 activités d'elec k. Source unique pour : formulaire de devis, dashboard, page « À propos ».
+ * Positionnement : électricien d'abord (dépannage, rénovation, tableau, tertiaire), bornes de recharge IRVE en spécialité.
  */
 export type ServiceKey = "BORNE" | "LED" | "ELECTRICITE" | "THERMOGRAPHIE";
 
@@ -35,12 +35,18 @@ export const services: ServiceDef[] = [
   },
   {
     key: "ELECTRICITE",
-    label: "Électricité tertiaire et industrielle",
-    title: "Installation et maintenance électrique tertiaire et industrielle",
-    href: "/electricite-tertiaire-industrielle",
+    label: "Électricité générale",
+    title: "Électricité générale : dépannage, rénovation, tertiaire",
+    href: "/depannage-electrique",
     query: "electricite",
-    pitch: "Installation, mise en conformité, maintenance préventive et dépannage de vos installations électriques professionnelles.",
-    needs: ["Installation neuve", "Rénovation / mise en conformité", "Maintenance préventive (contrat)", "Dépannage"],
+    pitch: "Dépannage, rénovation et mise aux normes, tableaux électriques chez les particuliers ; installation et maintenance tertiaire et industrielle.",
+    needs: [
+      "Dépannage",
+      "Rénovation / mise en conformité",
+      "Tableau électrique (remplacement, mise à niveau)",
+      "Installation neuve",
+      "Maintenance préventive (contrat)",
+    ],
   },
   {
     key: "THERMOGRAPHIE",

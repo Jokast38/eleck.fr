@@ -38,6 +38,9 @@ export function businessSchema(areaServed?: string) {
         ],
     hasCredential: { "@type": "EducationalOccupationalCredential", name: site.certification },
     makesOffer: [
+      "Dépannage électrique",
+      "Rénovation et mise aux normes électrique",
+      "Remplacement de tableau électrique",
       "Installation de bornes de recharge (IRVE)",
       "Maintenance de bornes de recharge",
       "Éclairage LED et relamping",
@@ -55,7 +58,17 @@ export function BusinessJsonLd({ areaServed }: { areaServed?: string }) {
 }
 
 /** Schéma Service pour une page de prestation. */
-export function ServiceJsonLd({ name, description, audience }: { name: string; description: string; audience?: string }) {
+export function ServiceJsonLd({
+  name,
+  description,
+  audience,
+  serviceType = "Installation de bornes de recharge pour véhicules électriques (IRVE)",
+}: {
+  name: string;
+  description: string;
+  audience?: string;
+  serviceType?: string;
+}) {
   return (
     <JsonLd
       data={{
@@ -63,7 +76,7 @@ export function ServiceJsonLd({ name, description, audience }: { name: string; d
         "@type": "Service",
         name,
         description,
-        serviceType: "Installation de bornes de recharge pour véhicules électriques (IRVE)",
+        serviceType,
         provider: { "@id": `${SITE_URL}/#entreprise` },
         areaServed: [
           { "@type": "AdministrativeArea", name: "Val-d'Oise" },

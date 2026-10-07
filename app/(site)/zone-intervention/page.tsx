@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Zone d'intervention : Val-d'Oise et Île-de-France",
   description:
-    "elec k installe et entretient des bornes de recharge à Herblay-sur-Seine, Cergy, Argenteuil, Conflans et dans tout le Val-d'Oise et l'Île-de-France.",
+    "Électricien à Herblay-sur-Seine : dépannage, rénovation et bornes de recharge à Cergy, Argenteuil, Conflans, dans le Val-d'Oise et en Île-de-France.",
   path: "/zone-intervention",
 });
 

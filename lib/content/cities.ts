@@ -1,5 +1,5 @@
 /**
- * Pages locales « /borne-recharge-[ville] ».
+ * Pages locales « /borne-recharge-[ville] » et « /electricien-[ville] ».
  * Chaque ville a un contenu rédigé spécifiquement (pas de simple remplacement du nom) :
  * contexte local, types de logements et de besoins, proximité avec Herblay-sur-Seine.
  * Pour ajouter une ville : ajouter une entrée ici, elle est générée automatiquement (SSG) et ajoutée au sitemap.
@@ -204,4 +204,95 @@ export const otherTowns = [
 ];
 
 export const cityPath = (slug: string) => `/borne-recharge-${slug}`;
+export const electricianPath = (slug: string) => `/electricien-${slug}`;
 export const getCity = (slug: string) => cities.find((c) => c.slug === slug);
+
+/** Contenu des pages « Électricien [ville] » (rédigé par ville, comme les pages bornes). */
+export type LocalContent = Pick<City, "metaDescription" | "headline" | "intro" | "focus">;
+
+export const electricianPages: Record<string, LocalContent> = {
+  "herblay-sur-seine": {
+    metaDescription:
+      "Électricien à Herblay-sur-Seine : dépannage, rénovation et mise aux normes, tableau électrique, bornes de recharge. Entreprise locale, devis gratuit.",
+    headline: "Votre électricien à Herblay-sur-Seine",
+    intro: [
+      "elec k est installé rue Pierre Loti, à Herblay-sur-Seine. Pour un dépannage, des travaux de rénovation ou le remplacement d'un tableau électrique, vous faites appel à une entreprise de votre commune.",
+      "Pavillons, résidences, commerces et locaux d'activités : nous intervenons sur tous types de bâtiments, avec le même souci de sécurité et de conformité.",
+    ],
+    focus: [
+      { title: "Dépannage de proximité", text: "Panne de courant, disjoncteur qui saute, circuit hors service : nos électriciens sont basés à Herblay." },
+      { title: "Rénovation des pavillons", text: "Mise en sécurité et rénovation des installations anciennes, selon la norme NF C 15-100." },
+      { title: "Commerces et artisans", text: "Installation, mise en conformité et maintenance électrique de vos locaux professionnels." },
+    ],
+  },
+  cergy: {
+    metaDescription:
+      "Électricien à Cergy : dépannage, rénovation et mise aux normes, tableau électrique, électricité tertiaire. elec k, entreprise du Val-d'Oise.",
+    headline: "Électricien à Cergy pour particuliers et professionnels",
+    intro: [
+      "Préfecture du Val-d'Oise, Cergy rassemble des résidences en copropriété, des maisons de ville et de nombreux parcs d'activités et bureaux.",
+      "Appartement à remettre en sécurité, tableau électrique à remplacer ou locaux professionnels à entretenir : nous étudions votre installation et vous proposons des travaux adaptés.",
+    ],
+    focus: [
+      { title: "Appartements et maisons de ville", text: "Dépannage, mise en sécurité, remplacement de tableau et rénovation électrique." },
+      { title: "Bureaux et parcs d'activités", text: "Installation, mise en conformité et contrats de maintenance électrique." },
+      { title: "Avant une vente ou une location", text: "Correction des anomalies relevées par le diagnostic électrique du logement." },
+    ],
+  },
+  argenteuil: {
+    metaDescription:
+      "Électricien à Argenteuil : dépannage, rénovation de maisons anciennes, mise aux normes, tableau électrique et électricité tertiaire. Devis gratuit.",
+    headline: "Électricien à Argenteuil : dépannage et rénovation",
+    intro: [
+      "Commune la plus peuplée du Val-d'Oise, Argenteuil mêle quartiers pavillonnaires, grands ensembles et zones commerciales.",
+      "Dans les maisons anciennes, l'installation électrique a souvent besoin d'une remise à niveau : nous commençons toujours par un diagnostic de l'existant avant de vous proposer des travaux.",
+    ],
+    focus: [
+      { title: "Maisons anciennes", text: "Mise à la terre, protection différentielle, remplacement des circuits vétustes et du tableau." },
+      { title: "Dépannage", text: "Recherche de panne et remise en service, en maison comme en appartement." },
+      { title: "Commerces et zones d'activités", text: "Travaux et maintenance électrique pour vos locaux professionnels." },
+    ],
+  },
+  "conflans-sainte-honorine": {
+    metaDescription:
+      "Électricien à Conflans-Sainte-Honorine, voisin d'Herblay : dépannage, rénovation électrique, tableau, électricité pour les pros. Devis gratuit.",
+    headline: "Électricien à Conflans-Sainte-Honorine",
+    intro: [
+      "Limitrophe d'Herblay-sur-Seine, Conflans-Sainte-Honorine se trouve à quelques minutes de nos locaux : un atout pour un dépannage comme pour le suivi d'un chantier.",
+      "Maisons sur les coteaux, résidences du centre-ville ou locaux professionnels : nous intervenons sur les installations récentes comme anciennes.",
+    ],
+    focus: [
+      { title: "Une équipe à proximité", text: "Nos électriciens sont basés dans la commune voisine, à Herblay-sur-Seine." },
+      { title: "Rénovation et mise aux normes", text: "Remise en sécurité des installations anciennes et rénovation selon la norme NF C 15-100." },
+      { title: "Professionnels", text: "Installation et maintenance électrique de vos bureaux, commerces et ateliers." },
+    ],
+  },
+  "montigny-les-cormeilles": {
+    metaDescription:
+      "Électricien à Montigny-lès-Cormeilles, commune voisine d'Herblay : dépannage, mise aux normes, tableau électrique, rénovation. Devis gratuit.",
+    headline: "Électricien à Montigny-lès-Cormeilles",
+    intro: [
+      "Commune voisine d'Herblay-sur-Seine, Montigny-lès-Cormeilles se trouve à quelques minutes de nos locaux.",
+      "Pour une panne, un tableau électrique à remplacer ou une rénovation, vous bénéficiez d'un interlocuteur de proximité, du diagnostic jusqu'à la fin des travaux.",
+    ],
+    focus: [
+      { title: "Dépannage", text: "Panne de courant, disjoncteur qui saute, prise ou éclairage hors service." },
+      { title: "Tableau électrique", text: "Remplacement des tableaux anciens et ajout de protections différentielles 30 mA." },
+      { title: "Rénovation", text: "Mise en sécurité et rénovation de l'installation, pièce par pièce ou complète." },
+    ],
+  },
+  "cormeilles-en-parisis": {
+    metaDescription:
+      "Électricien à Cormeilles-en-Parisis : dépannage, rénovation et mise aux normes, tableau électrique, maisons et résidences. Devis gratuit.",
+    headline: "Électricien à Cormeilles-en-Parisis",
+    intro: [
+      "À proximité immédiate d'Herblay-sur-Seine, Cormeilles-en-Parisis associe quartiers pavillonnaires historiques et programmes résidentiels récents.",
+      "Dans une maison ancienne, nous contrôlons d'abord votre installation et votre tableau ; dans un logement récent, nous intervenons pour un dépannage, un ajout de circuits ou une modification.",
+    ],
+    focus: [
+      { title: "Maisons anciennes", text: "Diagnostic, mise en sécurité et rénovation de l'installation électrique." },
+      { title: "Logements récents", text: "Ajout de prises, de circuits dédiés ou de points lumineux, dans le respect de la norme." },
+      { title: "Dépannage", text: "Recherche de panne et remise en service de votre installation." },
+    ],
+  },
+};

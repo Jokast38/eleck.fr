@@ -16,13 +16,13 @@ const description =
   "Éclairage LED et relamping pour commerces, bureaux, entrepôts et collectivités dans le Val-d'Oise et en Île-de-France. Étude, installation, devis gratuit.";
 
 export const revalidate = 3600;
-export const metadata = pageMetadata({ title: "Éclairage LED professionnel et relamping", description, path: "/eclairage-led" });
+export const metadata = pageMetadata({ title: "Éclairage LED professionnel et relamping (95)", description, path: "/eclairage-led" });
 
 export default async function EclairageLedPage() {
   const faq = await getFaq();
   return (
     <>
-      <ServiceJsonLd name="Éclairage LED et relamping" description={description} audience="Commerces, entreprises, industries et collectivités" />
+      <ServiceJsonLd name="Éclairage LED et relamping" serviceType="Éclairage LED et relamping" description={description} audience="Commerces, entreprises, industries et collectivités" />
       <PageHero
         crumbs={[{ label: "Éclairage LED", href: "/eclairage-led" }]}
         eyebrow="Éclairage LED"

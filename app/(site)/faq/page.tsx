@@ -11,21 +11,21 @@ import { pageMetadata } from "@/lib/seo";
 export const revalidate = 3600;
 
 export const metadata = pageMetadata({
-  title: "FAQ borne de recharge : vos questions",
+  title: "FAQ électricien et borne de recharge",
   description:
-    "Puissance, aides, copropriété, délais, maintenance : les réponses à vos questions sur l'installation d'une borne de recharge IRVE.",
+    "Dépannage, tableau électrique, mise aux normes, borne de recharge IRVE, aides, copropriété : les réponses d'elec k, électricien dans le Val-d'Oise.",
   path: "/faq",
 });
 
 export default async function FaqPage() {
   const faq = await getFaq();
-  const categories = Object.keys(faqCategories) as FaqCategory[];
+  const categories = (Object.keys(faqCategories) as FaqCategory[]).filter((c) => faq.some((f) => f.category === c));
   return (
     <>
       <PageHero
         crumbs={[{ label: "FAQ", href: "/faq" }]}
         eyebrow="Questions fréquentes"
-        title="Tout savoir sur l'installation d'une borne de recharge"
+        title="Vos questions sur l'électricité et les bornes de recharge"
         intro={<p>Retrouvez les réponses aux questions les plus courantes. Pour toute question sur votre projet, contactez-nous.</p>}
         showCta={false}
       />

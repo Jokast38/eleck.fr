@@ -31,15 +31,15 @@ const items = [
   },
 ];
 
-/** « Nos autres expertises » : éclairage LED, électricité tertiaire et industrielle, thermographie. */
+/** « Pour les professionnels » : électricité tertiaire et industrielle, éclairage LED, thermographie. */
 export function OtherServices() {
   return (
     <Section tone="graphite" labelledBy="autres-expertises">
       <SectionHeading
         id="autres-expertises"
-        eyebrow="Au-delà de la recharge"
-        title="Nos autres expertises électriques"
-        intro="Avant les bornes de recharge, elec k s'est construit sur l'électricité tertiaire et industrielle et sur l'éclairage LED. Ces savoir-faire restent au cœur de notre activité."
+        eyebrow="Pour les professionnels"
+        title="Électricité tertiaire, éclairage LED et thermographie"
+        intro="elec k s'est construit sur l'électricité tertiaire et industrielle et sur l'éclairage LED. Commerces, bureaux, ateliers et collectivités nous confient leurs installations."
       />
       <ul className="mt-12 grid gap-6 lg:grid-cols-3">
         {items.map(({ icon: Icon, art, title, href, text, points }) => (

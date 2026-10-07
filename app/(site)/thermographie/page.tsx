@@ -15,13 +15,13 @@ const description =
   "Thermographie infrarouge de vos installations électriques dans le Val-d'Oise : détection des échauffements, maintenance prédictive, rapport détaillé.";
 
 export const revalidate = 3600;
-export const metadata = pageMetadata({ title: "Thermographie infrarouge électrique", description, path: "/thermographie" });
+export const metadata = pageMetadata({ title: "Thermographie infrarouge électrique (95)", description, path: "/thermographie" });
 
 export default async function ThermographiePage() {
   const faq = await getFaq();
   return (
     <>
-      <ServiceJsonLd name="Thermographie infrarouge des installations électriques" description={description} audience="Entreprises, commerces, industries et collectivités" />
+      <ServiceJsonLd name="Thermographie infrarouge des installations électriques" serviceType="Thermographie infrarouge" description={description} audience="Entreprises, commerces, industries et collectivités" />
       <PageHero
         crumbs={[{ label: "Thermographie", href: "/thermographie" }]}
         eyebrow="Thermographie infrarouge"

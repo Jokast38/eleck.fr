@@ -4,8 +4,8 @@ import { Container } from "@/components/ui/Container";
 const items = [
   { icon: ShieldCheck, label: "Certifié IRVE", sub: "Qualification AFNOR" },
   { icon: FileCheck2, label: "Devis gratuit", sub: "Après étude de votre projet" },
-  { icon: Users, label: "Particuliers et professionnels", sub: "Copropriétés, entreprises, collectivités" },
-  { icon: Wrench, label: "Installation et maintenance", sub: "Bornes, LED, électricité, thermographie" },
+  { icon: Users, label: "Particuliers et professionnels", sub: "Maisons, copropriétés, entreprises" },
+  { icon: Wrench, label: "Dépannage et travaux", sub: "Électricité, bornes, LED, thermographie" },
 ];
 
 /** Bandeau de réassurance sous le hero. */

@@ -18,9 +18,9 @@ export const site = {
   vatNumber: "[À COMPLÉTER]",
   director: "Khaled KACED",
   businessManager: "Thierry MERCIER",
-  tagline: "Bornes de recharge, éclairage LED et électricité",
+  tagline: "Électricien, bornes de recharge et éclairage LED",
   description:
-    "Électricien certifié IRVE dans le Val-d'Oise : bornes de recharge, éclairage LED, installation et maintenance électrique tertiaire et industrielle, thermographie.",
+    "Électricien à Herblay-sur-Seine (Val-d'Oise) : dépannage, rénovation et mise aux normes, tableau électrique, électricité tertiaire et industrielle, bornes de recharge IRVE, éclairage LED, thermographie.",
   url: SITE_URL,
   email: "contact@eleck.fr",
   phone: {
@@ -55,8 +55,17 @@ export const CTA_HREF = "/devis";
 export type NavItem = { label: string; href: string; description?: string };
 export type NavGroup = { label: string; items: NavItem[] };
 
-/** Menu principal : deux menus déroulants + liens directs. */
+/** Menu principal : trois menus déroulants + liens directs. */
 export const mainNav: (NavItem | NavGroup)[] = [
+  {
+    label: "Électricité",
+    items: [
+      { label: "Dépannage électrique", href: "/depannage-electrique", description: "Panne, disjoncteur qui saute, circuit hors service" },
+      { label: "Rénovation et mise aux normes", href: "/renovation-electrique", description: "Mise en sécurité, rénovation, NF C 15-100" },
+      { label: "Tableau électrique", href: "/tableau-electrique", description: "Remplacement et mise à niveau" },
+      { label: "Électricité tertiaire et industrielle", href: "/electricite-tertiaire-industrielle", description: "Installation et maintenance pour les pros" },
+    ],
+  },
   {
     label: "Bornes de recharge",
     items: [
@@ -70,7 +79,6 @@ export const mainNav: (NavItem | NavGroup)[] = [
     label: "Autres services",
     items: [
       { label: "Éclairage LED", href: "/eclairage-led", description: "Relamping et éclairage technique" },
-      { label: "Électricité tertiaire et industrielle", href: "/electricite-tertiaire-industrielle", description: "Installation et maintenance" },
       { label: "Thermographie", href: "/thermographie", description: "Maintenance prédictive par caméra thermique" },
     ],
   },
@@ -82,6 +90,9 @@ export const isNavGroup = (i: NavItem | NavGroup): i is NavGroup => "items" in i
 
 export const footerNav = {
   solutions: [
+    { label: "Dépannage électrique", href: "/depannage-electrique" },
+    { label: "Rénovation et mise aux normes", href: "/renovation-electrique" },
+    { label: "Tableau électrique", href: "/tableau-electrique" },
     { label: "Borne pour particuliers", href: "/particuliers" },
     { label: "Borne en copropriété", href: "/coproprietes" },
     { label: "Borne pour entreprises", href: "/entreprises" },
