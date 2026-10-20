@@ -27,7 +27,7 @@ export default async function ElectricitePage() {
       <PageHero
         crumbs={[{ label: "Électricité tertiaire et industrielle", href: "/electricite-tertiaire-industrielle" }]}
         eyebrow="Électricité tertiaire et industrielle"
-        title="Installation et maintenance électrique pour les professionnels"
+        title="Installation et maintenance électrique pour les entreprises et les locaux professionnels"
         ctaService="electricite"
         intro={
           <p>

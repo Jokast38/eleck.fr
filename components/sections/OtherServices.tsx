@@ -37,7 +37,7 @@ export function OtherServices() {
     <Section tone="graphite" labelledBy="autres-expertises">
       <SectionHeading
         id="autres-expertises"
-        eyebrow="Pour les professionnels"
+        eyebrow="Pour les entreprises et les locaux professionnels"
         title="Électricité tertiaire, éclairage LED et thermographie"
         intro="elec k s'est construit sur l'électricité tertiaire et industrielle et sur l'éclairage LED. Commerces, bureaux, ateliers et collectivités nous confient leurs installations."
       />

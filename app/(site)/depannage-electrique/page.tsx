@@ -33,7 +33,7 @@ export default async function DepannagePage() {
           <p>
             Panne de courant, disjoncteur qui saute, différentiel qui déclenche, prises ou éclairage qui ne fonctionnent
             plus : nos électriciens recherchent l&apos;origine de la panne et remettent votre installation en service en
-            toute sécurité, chez les particuliers comme chez les professionnels.
+            toute sécurité, auprès des entreprises, des professionnels et des particuliers.
           </p>
         }
       >

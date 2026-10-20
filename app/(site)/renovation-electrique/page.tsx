@@ -38,7 +38,7 @@ export default async function RenovationPage() {
           <p>
             Installation vieillissante, prises sans terre, absence de protection différentielle, anomalies relevées par un
             diagnostic : nous remettons votre installation en sécurité et la rénovons selon la norme NF C 15-100, en
-            maison comme en appartement.
+            maison comme en entreprise, dans les locaux professionnels comme en résidentiels.
           </p>
         }
       >

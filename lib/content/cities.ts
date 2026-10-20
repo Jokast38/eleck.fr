@@ -249,7 +249,7 @@ export const electricianPages: Record<string, LocalContent> = {
     ],
     focus: [
       { title: "Maisons anciennes", text: "Mise à la terre, protection différentielle, remplacement des circuits vétustes et du tableau." },
-      { title: "Dépannage", text: "Recherche de panne et remise en service, en maison comme en appartement." },
+      { title: "Dépannage", text: "Recherche de panne et remise en service, en maison comme en entreprise, dans les locaux professionnels comme en résidentiels." },
       { title: "Commerces et zones d'activités", text: "Travaux et maintenance électrique pour vos locaux professionnels." },
     ],
   },
