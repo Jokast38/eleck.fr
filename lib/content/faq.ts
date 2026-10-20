@@ -33,7 +33,7 @@ export const faq: FaqItem[] = [
     category: "general",
     home: true,
     q: "Pourquoi faire appel à un installateur certifié IRVE ?",
-    a: "La réglementation impose un installateur qualifié IRVE pour toute borne de recharge d'une puissance supérieure à 3,7 kW. C'est aussi une condition pour bénéficier des aides financières et pour faire valoir la garantie du fabricant. elec k détient la qualification IRVE délivrée sous l'égide de l'AFNOR.",
+    a: "La réglementation impose un installateur qualifié IRVE pour toute borne de recharge d'une puissance supérieure à 3,7 kW. C'est aussi une condition pour bénéficier des aides financières et pour faire valoir la garantie du fabricant. elec k détient la qualification IRVE délivrée sous l'égide de l'QUALIFELEC.",
   },
   {
     category: "general",

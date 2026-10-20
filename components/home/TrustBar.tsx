@@ -2,7 +2,7 @@ import { FileCheck2, ShieldCheck, Users, Wrench } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 
 const items = [
-  { icon: ShieldCheck, label: "Certifié IRVE", sub: "Qualification AFNOR" },
+  { icon: ShieldCheck, label: "Certifié IRVE", sub: "Qualification QUALIFELEC" },
   { icon: FileCheck2, label: "Devis gratuit", sub: "Après étude de votre projet" },
   { icon: Users, label: "Particuliers et professionnels", sub: "Maisons, copropriétés, entreprises" },
   { icon: Wrench, label: "Dépannage et travaux", sub: "Électricité, bornes, LED, thermographie" },

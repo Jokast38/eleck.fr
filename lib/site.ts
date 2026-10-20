@@ -43,7 +43,7 @@ export const site = {
   // Format schema.org, ex. : { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday"], opens: "08:00", closes: "18:00" }
   openingHoursSpec: [] as Record<string, unknown>[],
   areaServed: ["Herblay-sur-Seine", "Val-d'Oise (95)", "Île-de-France"],
-  certification: "Qualification IRVE (AFNOR)",
+  certification: "Qualification IRVE (QUALIFELEC)",
   social: [] as { label: string; href: string }[], // à compléter (LinkedIn, Facebook, Instagram…)
 } as const;
 
