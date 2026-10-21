@@ -44,7 +44,7 @@ export function Hero() {
             à Herblay et dans tout le <span className="whitespace-nowrap">Val-d&apos;Oise</span>
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/80 sm:text-xl">
-            Dépannage, rénovation et mise aux normes, tableau électrique : depuis Herblay-sur-Seine, elec k intervient auprès
+            Dépannage, rénovation et mise aux normes, tableau électrique et installation électrique : depuis Herblay-sur-Seine, elec k intervient auprès
             des entreprises, des professionnels et des particuliers. Installateur certifié IRVE, nous posons aussi des bornes de recharge et réalisons vos
             projets d&apos;éclairage LED et de thermographie infrarouge.
           </p>
