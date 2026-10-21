@@ -61,7 +61,7 @@ export function HomeElectricity() {
       <SectionHeading
         id="electricite"
         eyebrow="Électricité générale"
-        title="Votre électricien pour la maison et les locaux professionnels"
+        title="Votre électricien pour les entreprises, les locaux professionnels et l'habitat"
         intro="Une panne, une installation à remettre aux normes, un tableau à remplacer : nos électriciens interviennent à Herblay-sur-Seine et dans tout le Val-d'Oise."
       />
       <ul className="mt-12 grid gap-6 md:grid-cols-2">
