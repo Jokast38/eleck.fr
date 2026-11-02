@@ -36,11 +36,11 @@ export default async function HomePage() {
       <TrustBar />
       <ClientLogos />
       <HomeElectricity />
+      <OtherServices />
       <AudienceCards />
       <Services />
-      <Process />
-      <OtherServices />
       <Aides />
+      <Process />
       <RealisationsGrid limit={6} />
       <Reviews />
       <FaqSection items={homeFaq} />

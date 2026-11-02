@@ -11,6 +11,7 @@ const quickLinks = [
   { href: "/depannage-electrique", label: "Dépannage" },
   { href: "/renovation-electrique", label: "Rénovation" },
   { href: "/tableau-electrique", label: "Tableau électrique" },
+  { href: "/electricite-tertiaire-industrielle", label: "Tertiaire et industriel" },
   { href: "/particuliers", label: "Bornes de recharge" },
   { href: "/eclairage-led", label: "Éclairage LED" },
   { href: "/thermographie", label: "Thermographie" },

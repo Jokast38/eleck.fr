@@ -18,7 +18,7 @@ const items = [
     art: <PanelArt uid="os" className="h-28 w-full" />,
     title: "Électricité tertiaire et industrielle",
     href: "/electricite-tertiaire-industrielle",
-    text: "Installation, mise en conformité, maintenance préventive et dépannage de vos installations électriques professionnelles.",
+    text: "Un seul interlocuteur pour vos bureaux, commerces, ateliers et sites industriels, de l'installation à la mise en conformité, puis dans la durée.",
     points: ["Travaux neufs et rénovation", "Maintenance préventive", "Dépannage et maintenance curative"],
   },
   {
@@ -39,7 +39,7 @@ export function OtherServices() {
         id="autres-expertises"
         eyebrow="Pour les entreprises et les locaux professionnels"
         title="Électricité tertiaire, éclairage LED et thermographie"
-        intro="elec k s'est construit sur l'électricité tertiaire et industrielle et sur l'éclairage LED. Commerces, bureaux, ateliers et collectivités nous confient leurs installations."
+        intro="Au-delà de ces interventions, elec k s'est construit sur l'électricité tertiaire et industrielle et sur l'éclairage LED. Commerces, bureaux, ateliers et collectivités nous confient leurs installations."
       />
       <ul className="mt-12 grid gap-6 lg:grid-cols-3">
         {items.map(({ icon: Icon, art, title, href, text, points }) => (

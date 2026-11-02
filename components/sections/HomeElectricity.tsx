@@ -43,7 +43,9 @@ const items = [
   {
     icon: Plug,
     title: "Installation électrique",
-    href: "/electricite-tertiaire-industrielle",
+    // Pas de page dédiée, et le tertiaire est présenté juste après : on mène directement au devis
+    href: "/devis?service=electricite",
+    cta: "Demander un devis",
     text: "Installations électriques neuves ou en extension, pour les logements, bureaux et commerces.",
     points: [
       "Courants forts et faibles : prises, interrupteurs, réseaux",
@@ -65,7 +67,7 @@ export function HomeElectricity() {
         intro="Une panne, une installation à remettre aux normes, un tableau à remplacer : nos électriciens interviennent à Herblay-sur-Seine et dans tout le Val-d'Oise."
       />
       <ul className="mt-12 grid gap-6 md:grid-cols-2">
-        {items.map(({ icon: Icon, title, href, text, points }) => (
+        {items.map(({ icon: Icon, title, href, cta, text, points }) => (
           <li key={title}>
             <Link href={href} className="group flex h-full flex-col rounded-xl border border-white/10 bg-graphite p-7 transition hover:-translate-y-0.5 hover:border-brand/60">
               <h3 className="flex items-center gap-3 font-display text-xl font-semibold">
@@ -82,16 +84,13 @@ export function HomeElectricity() {
                 ))}
               </ul>
               <span className="mt-auto inline-flex items-center gap-1.5 pt-7 font-semibold text-brand-bright">
-                Découvrir <span className="sr-only">{title}</span>
+                {cta ?? "Découvrir"} <span className="sr-only">{title}</span>
                 <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
           </li>
         ))}
       </ul>
-      <Link href="/electricite-tertiaire-industrielle" className="mt-10 inline-flex items-center gap-1.5 font-semibold text-brand-bright hover:text-white">
-        Professionnels : électricité tertiaire et industrielle <ArrowRight aria-hidden className="size-4" />
-      </Link>
     </Section>
   );
 }
