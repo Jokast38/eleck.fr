@@ -36,16 +36,16 @@ export const services: ServiceDef[] = [
   {
     key: "ELECTRICITE",
     label: "Électricité générale",
-    title: "Électricité générale : dépannage, rénovation, tertiaire",
+    title: "Électricité générale & industrielle : installation, rénovation, dépannage & maintenance",
     href: "/depannage-electrique",
     query: "electricite",
-    pitch: "Dépannage, rénovation et mise aux normes, tableaux électriques chez les particuliers ; installation et maintenance tertiaire et industrielle.",
+    pitch: "Installation, maintenance et dépannage de vos infrastructures électriques industrielles et tertiaires. Nous assurons la mise en conformité de vos équipements et la continuité de votre activité. Nos équipes interviennent également auprès des particuliers pour leurs projets de rénovation et remplacement de tableaux.",
     needs: [
       "Dépannage",
       "Rénovation / mise en conformité",
       "Tableau électrique (remplacement, mise à niveau)",
       "Installation neuve",
-      "Maintenance préventive (contrat)",
+      "Maintenance préventive",
     ],
   },
   {

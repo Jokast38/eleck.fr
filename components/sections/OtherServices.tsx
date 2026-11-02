@@ -19,7 +19,7 @@ const items = [
     title: "Électricité tertiaire et industrielle",
     href: "/electricite-tertiaire-industrielle",
     text: "Installation, mise en conformité, maintenance préventive et dépannage de vos installations électriques professionnelles.",
-    points: ["Travaux neufs et rénovation", "Contrats de maintenance préventive", "Dépannage et maintenance curative"],
+    points: ["Travaux neufs et rénovation", "Maintenance préventive", "Dépannage et maintenance curative"],
   },
   {
     icon: ScanLine,
