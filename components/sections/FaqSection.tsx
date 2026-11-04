@@ -7,6 +7,8 @@ import { FaqList } from "./FaqList";
 
 /** Section FAQ (titre + accordéon + lien vers /faq), avec schéma FAQPage. */
 export function FaqSection({ items, title = "Vos questions, nos réponses" }: { items: FaqItem[]; title?: string }) {
+  // Aucune question pour cette catégorie (ex. base pas encore complétée) : pas de bloc vide ni de schéma FAQPage vide
+  if (!items.length) return null;
   return (
     <Section tone="light" labelledBy="faq">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr]">
