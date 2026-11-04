@@ -1,4 +1,4 @@
-import { Bath, Cable, FileText, Gauge, Plug, ShieldCheck } from "lucide-react";
+import { Cable, FileText, Gauge, Plug, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Benefits } from "@/components/sections/Benefits";
 import { SplitChecklist } from "@/components/sections/SplitChecklist";
@@ -53,7 +53,6 @@ export default async function RenovationPage() {
         items={[
           { icon: ShieldCheck, title: "Mise en sécurité", text: "Mise à la terre, protection différentielle 30 mA, protections adaptées à chaque circuit." },
           { icon: Cable, title: "Rénovation partielle ou complète", text: "Remplacement des câbles et des circuits vétustes, pièce par pièce ou sur toute l'installation." },
-          { icon: Bath, title: "Salle de bains et cuisine", text: "Respect des volumes de sécurité, liaison équipotentielle, circuits dédiés à l'électroménager." },
           { icon: Plug, title: "Prises, éclairage, circuits", text: "Ajout de prises, de points lumineux et de circuits spécialisés selon vos usages." },
           { icon: FileText, title: "Suite à un diagnostic", text: "Correction des anomalies relevées lors d'un diagnostic électrique de vente ou de location." },
           { icon: Gauge, title: "Tableau électrique", text: "Remplacement ou mise à niveau du tableau, souvent au cœur d'une rénovation." },

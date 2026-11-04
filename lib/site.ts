@@ -14,7 +14,7 @@ export const site = {
   siren: "817 638 513",
   ape: "4321A (Travaux d'installation électrique dans tous locaux)",
   shareCapital: "1 000 €",
-  rcs: "[À COMPLÉTER] (ex. RCS Pontoise 817 638 513)",
+  rcs: "RCS Pontoise 817 638 513",
   vatNumber: "FR18 817 638 513",
   director: "Khaled KACED",
   businessManager: "Thierry MERCIER",
