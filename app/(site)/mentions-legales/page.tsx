@@ -68,11 +68,12 @@ export default function MentionsLegalesPage() {
         Assurance responsabilité civile professionnelle et décennale : MIC INSURANCE COMPANY, police n° 160603615JA.
       </p>
 
-      <h2>Médiation de la consommation</h2>
+      <h2>Réclamations et litiges</h2>
       <p>
-        Conformément aux articles L.612-1 et suivants du Code de la consommation, le client consommateur peut recourir
-        gratuitement à un médiateur de la consommation en vue de la résolution amiable d&apos;un litige :{" "}
-        <Todo>[À COMPLÉTER : nom, adresse et site du médiateur]</Todo>.
+        Pour toute réclamation ou tout litige, le client peut contacter elec k en vue d&apos;une résolution amiable : par
+        courrier au {site.address.street}, {site.address.postalCode} {site.address.city}, par téléphone au{" "}
+        <a href={site.phone.href}>{site.phone.display}</a> ou par e-mail à{" "}
+        <a href={`mailto:${site.email}`}>{site.email}</a>.
       </p>
 
       <h2>Propriété intellectuelle</h2>
