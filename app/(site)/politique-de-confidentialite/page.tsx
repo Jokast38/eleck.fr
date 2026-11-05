@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LegalPage, Todo } from "@/components/sections/LegalPage";
+import { LegalPage } from "@/components/sections/LegalPage";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -97,10 +97,10 @@ export default function ConfidentialitePage() {
       <ul>
         <li>Hébergement du site : Vercel Inc. (États-Unis).</li>
         <li>
-          Base de données : <Todo>[À COMPLÉTER : Neon, Supabase ou Vercel Postgres, région d&apos;hébergement]</Todo>.
+          Base de données : Prisma Postgres (Prisma Data).
         </li>
         <li>
-          Messagerie électronique professionnelle : <Todo>[À COMPLÉTER : fournisseur de la boîte contact@eleck.fr]</Todo>.
+          Messagerie électronique professionnelle : Hostinger International Ltd.
         </li>
         <li>Protection anti-spam du formulaire : Cloudflare, Inc. (Turnstile).</li>
         <li>Limitation du nombre d&apos;envois : Upstash, Inc.</li>
