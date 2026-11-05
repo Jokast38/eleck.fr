@@ -44,7 +44,7 @@ export const site = {
   openingHoursSpec: [] as Record<string, unknown>[],
   areaServed: ["Herblay-sur-Seine", "Val-d'Oise (95)", "Île-de-France"],
   certification: "Qualification IRVE (QUALIFELEC)",
-  social: [] as { label: string; href: string }[], // à compléter (LinkedIn, Facebook, Instagram…)
+  social: [{ label: "LinkedIn", href: "https://www.linkedin.com/company/eleck/" }] as { label: string; href: string }[], // + Facebook, Instagram… si fournis
 } as const;
 
 /** Libellé unique du CTA principal (règle « un seul CTA »). Ne pas dupliquer ailleurs. */
