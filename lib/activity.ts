@@ -27,6 +27,7 @@ export const actionLabels: Record<string, string> = {
   "lead.export": "Export CSV des demandes",
   "mail.send": "E-mail envoyé",
   "mail.link": "E-mail rattaché à une demande",
+  "mail.delete": "E-mail(s) supprimé(s)",
   "user.login": "Connexion",
   "user.login_failed": "Échec de connexion",
   "user.locked": "Compte verrouillé",

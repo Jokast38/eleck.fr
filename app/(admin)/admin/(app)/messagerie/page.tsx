@@ -8,7 +8,7 @@ import { smtpConfigured } from "@/lib/mail/smtp";
 import { formatDateTime, formatShort } from "@/lib/format";
 import { leadReference } from "@/lib/leads/format";
 import { Card, EmptyState, Input, Notice, PageHeader, buttonClass } from "@/components/admin/ui";
-import { SyncButton } from "@/components/admin/MailActions";
+import { MailCheckbox, MailSelection, MailSelectionBar, SyncButton } from "@/components/admin/MailActions";
 import { cn } from "@/lib/utils";
 
 export const metadata = { title: "Messagerie" };
@@ -90,18 +90,22 @@ export default async function MailboxPage({ searchParams }: { searchParams: Prom
         </div>
       )}
 
+      <MailSelection ids={messages.map((m) => m.id)}>
       <Card className="overflow-hidden">
         <div className="flex flex-col gap-3 border-b border-black/10 px-3 sm:flex-row sm:items-center sm:justify-between">
           <nav aria-label="Dossiers" className="flex">
             {tab("reception", "Réception", <Inbox aria-hidden className="size-4" />, unread)}
             {tab("envoyes", "Envoyés", <Send aria-hidden className="size-4" />)}
           </nav>
-          <form role="search" className="relative pb-3 sm:pb-0">
-            {sp.dossier && <input type="hidden" name="dossier" value={sp.dossier} />}
-            <label htmlFor="mail-q" className="sr-only">Rechercher un e-mail</label>
-            <Search aria-hidden className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-dark sm:top-1/2" />
-            <Input id="mail-q" name="q" defaultValue={q} placeholder="Rechercher…" className="h-9 w-full pl-9 sm:w-64" />
-          </form>
+          <div className="flex flex-wrap items-center gap-3 pb-3 sm:justify-end sm:py-2">
+            <MailSelectionBar />
+            <form role="search" className="relative w-full sm:w-auto">
+              {sp.dossier && <input type="hidden" name="dossier" value={sp.dossier} />}
+              <label htmlFor="mail-q" className="sr-only">Rechercher un e-mail</label>
+              <Search aria-hidden className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-dark sm:top-1/2" />
+              <Input id="mail-q" name="q" defaultValue={q} placeholder="Rechercher…" className="h-9 w-full pl-9 sm:w-64" />
+            </form>
+          </div>
         </div>
 
         {messages.length ? (
@@ -109,8 +113,9 @@ export default async function MailboxPage({ searchParams }: { searchParams: Prom
             {messages.map((m) => {
               const unreadRow = folder === "INBOUND" && !m.seen;
               return (
-                <li key={m.id}>
-                  <Link href={`/admin/messagerie/${m.id}`} className={cn("flex items-start gap-3 px-4 py-3 hover:bg-mist/70", unreadRow && "bg-brand/[0.03]")}>
+                <li key={m.id} className={cn("flex", unreadRow && "bg-brand/[0.03]")}>
+                  <MailCheckbox id={m.id} label={m.subject} />
+                  <Link href={`/admin/messagerie/${m.id}`} className="flex min-w-0 flex-1 items-start gap-3 px-4 py-3 hover:bg-mist/70">
                     <span aria-hidden className={cn("mt-2 size-2 shrink-0 rounded-full", unreadRow ? "bg-brand" : "bg-transparent")} />
                     <span className="min-w-0 flex-1">
                       <span className="flex items-baseline justify-between gap-3">
@@ -138,6 +143,7 @@ export default async function MailboxPage({ searchParams }: { searchParams: Prom
           </EmptyState>
         )}
       </Card>
+      </MailSelection>
 
       {pages > 1 && (
         <nav aria-label="Pagination" className="mt-4 flex items-center justify-between text-sm">

@@ -255,3 +255,40 @@ export async function setSeenOnServer(folder: string, uid: number, seen: boolean
     }
   });
 }
+
+/** Dossier « Corbeille » : attribut spécial \Trash, avec repli sur les noms usuels (null s'il n'existe pas). */
+async function trashFolderPath(client: ImapFlow) {
+  const folders = await client.list();
+  return (
+    folders.find((f) => f.specialUse === "\Trash")?.path ??
+    folders.find((f) => /^(trash|corbeille|deleted|éléments supprimés)/i.test(f.name))?.path ??
+    null
+  );
+}
+
+/**
+ * Place des messages dans la corbeille du serveur (récupérables depuis le webmail), ou les supprime s'il n'y en a pas.
+ * Un message n'est touché que si l'UIDVALIDITY de son dossier est inchangée : sinon son UID pourrait désigner un autre message.
+ */
+export async function trashOnServer(messages: { folder: string; uid: number; uidValidity: bigint }[]) {
+  if (!messages.length) return;
+  return withImap(async (client) => {
+    const trash = await trashFolderPath(client);
+    const byFolder = new Map<string, typeof messages>();
+    for (const m of messages) byFolder.set(m.folder, [...(byFolder.get(m.folder) ?? []), m]);
+    for (const [folder, items] of byFolder) {
+      if (folder === trash) continue;
+      const lock = await client.getMailboxLock(folder);
+      try {
+        const box = client.mailbox;
+        if (!box) continue;
+        const uids = items.filter((m) => m.uidValidity === BigInt(box.uidValidity)).map((m) => m.uid);
+        if (!uids.length) continue;
+        if (trash) await client.messageMove(uids.join(","), trash, { uid: true });
+        else await client.messageDelete(uids.join(","), { uid: true });
+      } finally {
+        lock.release();
+      }
+    }
+  });
+}

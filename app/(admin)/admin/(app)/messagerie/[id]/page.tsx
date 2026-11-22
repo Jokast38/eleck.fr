@@ -12,7 +12,7 @@ import { leadReference } from "@/lib/leads/format";
 import { Card, CardHeader, StatusBadge } from "@/components/admin/ui";
 import { MessageBody } from "@/components/admin/MessageBody";
 import { Composer } from "@/components/admin/Composer";
-import { LinkLead, SeenToggle } from "@/components/admin/MailActions";
+import { DeleteMailButton, LinkLead, SeenToggle } from "@/components/admin/MailActions";
 
 export const metadata = { title: "E-mail" };
 
@@ -43,10 +43,11 @@ export default async function MessagePage({ params }: { params: Promise<{ id: st
   const safe = m.html ? sanitizeIncoming(m.html) : null;
   const withImages = m.html ? sanitizeIncoming(m.html, { remoteImages: true }) : null;
   const replyTo = m.direction === "INBOUND" ? m.fromAddress : m.toAddresses.join(", ");
+  const backHref = m.direction === "INBOUND" ? "/admin/messagerie" : "/admin/messagerie?dossier=envoyes";
 
   return (
     <>
-      <Link href={m.direction === "INBOUND" ? "/admin/messagerie" : "/admin/messagerie?dossier=envoyes"} className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-dark hover:text-ink">
+      <Link href={backHref} className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-dark hover:text-ink">
         <ArrowLeft aria-hidden className="size-4" /> {m.direction === "INBOUND" ? "Réception" : "Envoyés"}
       </Link>
 
@@ -125,6 +126,9 @@ export default async function MessagePage({ params }: { params: Promise<{ id: st
               options={candidates.map((c) => ({ id: c.id, label: `${leadReference(c.number)} · ${c.firstName} ${c.lastName} (${c.city})` }))}
             />
             {m.sentBy && <p className="text-xs text-muted-dark">Envoyé par {m.sentBy.name} depuis le dashboard.</p>}
+            <div className="border-t border-black/10 pt-4">
+              <DeleteMailButton id={m.id} backHref={backHref} />
+            </div>
           </Card>
         </aside>
       </div>
